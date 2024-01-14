@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import lombok.Data;
 import org.springframework.stereotype.Component;
@@ -23,13 +22,13 @@ public class BasicController {
     @GetMapping("/text-basic")
     public String textBasic(Model model) {
         model.addAttribute("data", "Hello <b>Data</b>");
-        return "text-basic";
+        return "basic/text-basic";
     }
 
     @GetMapping("/text-unescaped")
     public String textUnescaped(Model model) {
         model.addAttribute("data", "Hello <b>Data</b>");
-        return "text-unescaped";
+        return "basic/text-unescaped";
     }
 
     @GetMapping("/variable")
@@ -49,7 +48,7 @@ public class BasicController {
         model.addAttribute("users", list);
         model.addAttribute("userMap", map);
 
-        return "variable";
+        return "basic/variable";
     }
 
 
@@ -63,7 +62,20 @@ public class BasicController {
         model.addAttribute("response", response);
         model.addAttribute("session", session);
         model.addAttribute("servletContext", request.getServletContext());
-        return "basic-objects";
+        return "basic/basic-objects";
+    }
+
+    @GetMapping("/date")
+    public String date(Model model) {
+        model.addAttribute("localDateTime", LocalDateTime.now());
+        return "basic/date";
+    }
+
+    @GetMapping("/link")
+    public String link(Model model) {
+        model.addAttribute("param1", "data1");
+        model.addAttribute("param2", "data2");
+        return "basic/link";
     }
 
     @Component("helloBean")
@@ -73,10 +85,62 @@ public class BasicController {
         }
     }
 
-    @GetMapping("/date")
-    public String date(Model model) {
-        model.addAttribute("localDateTime", LocalDateTime.now());
-        return "date";
+    @GetMapping("/literal")
+    public String literal(Model model) {
+        model.addAttribute("data", "Spring!");
+        return "basic/literal";
+    }
+
+    @GetMapping("/attribute")
+    public String attribute(Model model) {
+        return "basic/attribute";
+    }
+
+    @GetMapping("/each")
+    public String each(Model model) {
+        addUsers(model);
+        return "basic/each";
+    }
+
+    private void addUsers(Model model) {
+        List<User> users = new ArrayList<>();
+        users.add(new User("userA", 10));
+        users.add(new User("userA", 20));
+        users.add(new User("userA", 30));
+
+        model.addAttribute("users", users);
+    }
+
+    @GetMapping("/comments")
+    public String comments(Model model) {
+        model.addAttribute("data", "Spring");
+        return "basic/comments";
+    }
+
+    @GetMapping("/condition")
+    public String condition(Model model) {
+        addUsers(model);
+        return "basic/condition";
+    }
+
+    @GetMapping("/block")
+    public String block(Model model) {
+        addUsers(model);
+        return "basic/block";
+    }
+
+    @GetMapping("/javascript")
+    public String javascript(Model model) {
+        model.addAttribute("user", new User("userA", 10));
+        addUsers(model);
+        return "basic/javascript";
+    }
+
+    @GetMapping("/operation")
+    public String operation(Model model) {
+        model.addAttribute("nullData", null);
+        model.addAttribute("data", "Spring!");
+        return "basic/operation";
     }
 
     @Data

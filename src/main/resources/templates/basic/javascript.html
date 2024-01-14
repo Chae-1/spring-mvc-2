@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 자바스크립트 인라인 사용 이전-->
+<script>
+    let username = "[[${user.username}]]";
+    let age = [[${user.age}]];
+
+    // 자바스크립트 내추럴 템플릿
+    let username2 = /*[[${user.username}]]*/ "test username";
+    let user = [[${user}]];
+</script>
+
+<script th:inline="javascript">
+    let username = "[[${user.username}]]";
+    let age = [[${user.age}]];
+
+    // 자바스크립트 내추럴 템플릿
+    let username2 = /*[[${user.username}]]*/ "test username";
+    let user = [[${user}]];
+</script>
+
+<script th:inline="javascript">
+    [# th:each="user, userStat : ${users}"]
+    var user = [[${user}]];
+    [/]
+</script>
+
+</body>
+</html>
