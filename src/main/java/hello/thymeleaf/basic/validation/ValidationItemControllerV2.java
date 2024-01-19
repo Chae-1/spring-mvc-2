@@ -259,7 +259,7 @@ public class ValidationItemControllerV2 {
         return "redirect:validation/items/v2/{itemId}";
     }
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String saveV6(@ModelAttribute Item item,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {

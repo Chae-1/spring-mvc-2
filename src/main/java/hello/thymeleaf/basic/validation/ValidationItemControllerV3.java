@@ -84,7 +84,7 @@ public class ValidationItemControllerV3 {
         return "validation/v3/addForm";
     }
 
-    @PostMapping("/add")
+   // @PostMapping("/add")
     public String save(@Validated(AddForm.class) @ModelAttribute Item item,
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes) {

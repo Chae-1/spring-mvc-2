@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" href="../css/bootstrap.min.css">
+    <style>
+      .field-error {
+        color: red;
+        border-color:red;
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="py-5 text-center">
+      <h2>회원 가입</h2>
+    </div>
+
+    <h4 class="mb-3">회원 정보 입력</h4>
+    <form th:action method="post" th:object="${member}">
+      <div th:if="${#fields.hasGlobalErrors()}">
+        <p class="field-error" th:each="err : ${#fields.globalErrors()}" th:text="${err}">
+          전체 오류 메시지
+        </p>
+      </div>
+
+      <div>
+        <label for="loginId" class="form-control-label">로그인 ID</label>
+        <input type="text" th:errorclass="field-error" id=loginId th:field="*{loginId}" class="form-control">
+        <div th:errors="*{loginId}">
+
+        </div>
+      </div>
+
+      <div>
+        <label for="password" class="form-control-label">비밀번호</label>
+        <input type="password" th:errorclass="field-error" id=password th:field="*{password}" class="form-control">
+        <div th:errors="*{password}">
+
+        </div>
+      </div>
+
+      <div>
+        <label for="name" class="form-control-label">로그인 ID</label>
+        <input type="text" th:errorclass="field-error" id=name th:field="*{name}" class="form-control">
+        <div th:errors="*{name}">
+
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="w-100 btn btn-primary btn-lg">회원 가입</button>
+        </div>
+
+        <div class="col">
+          <button type="button"
+                  onclick="localtion.href='items.html'"
+                  th:onclick="|location.href='@{/}'|"
+                  class="w-100 btn btn-secondary btn-lg">취소</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</body>
+</html>
